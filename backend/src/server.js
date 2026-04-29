@@ -1,6 +1,6 @@
 import Fastify from "fastify";
 import dotenv from "dotenv";
-import contactRoutes from "./routes/contact.route.js";
+import cors from "@fastify/cors";
 
 dotenv.config();
 
@@ -8,6 +8,13 @@ const app = Fastify({
     logger: true
 });
 
+// ✅ AQUI — registar plugins
+await app.register(cors, {
+    origin: true
+});
+
+// ✅ depois as routes
+import contactRoutes from "./routes/contact.route.js";
 app.register(contactRoutes);
 
 app.get("/", async () => {

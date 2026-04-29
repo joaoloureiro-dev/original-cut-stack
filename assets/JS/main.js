@@ -154,18 +154,69 @@ if (galleryItems.length) {
         galleryObserver.observe(item);
     });
 }
+const form = document.querySelector(".contact-form");
+const button = form.querySelector("button");
 
-/* =========================
-   CONFIG
-========================= */
+let turnstileToken = null;
 
-const API_URL = (() => {
-    const host = window.location.hostname;
+// 🔐 callbacks globais (Cloudflare Turnstile)
+window.onTurnstileSuccess = function (token) {
+    turnstileToken = token;
+};
 
-    if (host === "localhost" || host === "127.0.0.1") {
-        return "http://localhost:3000";
+window.onTurnstileExpired = function () {
+    turnstileToken = null;
+};
+
+// 🚀 submit handler
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // valida captcha
+    if (!turnstileToken) {
+        alert("Por favor confirma que não és um robô.");
+        return;
     }
 
-    // produção (Railway backend)
-    return "https://original-cut-barbershop-production-0e69.up.railway.app";
-})();
+    // dados do form
+    const formData = new FormData(form);
+
+    const data = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        message: formData.get("message"),
+        token: turnstileToken
+    };
+
+    try {
+        // loading UI
+        button.disabled = true;
+        button.textContent = "A enviar...";
+
+        const response = await fetch("http://localhost:3000/contact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || "Erro ao enviar mensagem");
+        }
+
+        // sucesso
+        alert("Mensagem enviada com sucesso!");
+        form.reset();
+        turnstileToken = null;
+
+    } catch (error) {
+        console.error(error);
+        alert("Erro ao enviar. Tenta novamente.");
+    } finally {
+        button.disabled = false;
+        button.textContent = "Enviar Mensagem";
+    }
+});
