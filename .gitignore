@@ -1,0 +1,9 @@
+# Node (backend futuro)
+node_modules
+.env
+
+# Logs
+*.log
+
+# OS
+.DS_Store

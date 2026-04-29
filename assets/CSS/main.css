@@ -1,0 +1,952 @@
+@import url('_variables.css');
+
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+html, body {
+    overflow-x: clip;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    
+    
+}
+
+html {
+    font-size: 62.5%;
+    font-family: "Inter", sans-serif;
+
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+main{
+    flex: 1;
+}
+/* =========================
+   HEADER
+========================= */
+
+.headerContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    z-index: 1000;
+}
+
+.menu-btn {
+    font-size: 2.4rem;
+    color: white;
+    margin-right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.columnRight {
+    display: flex;
+    justify-content: flex-end;
+    width: auto;
+}
+
+.columnLeft img {
+    border-radius: 100%;
+    margin-left: 30px;
+    width: 100px;
+    height: 100px;
+}
+
+/* =========================
+   SIDEBAR (MOBILE)
+========================= */
+
+.sidebar {
+    position:fixed;
+    top: 100px;
+    right: -250px;
+    width: 250px;
+    height: calc(100vh - 100px);
+    margin: 0;
+    background-color: var(--primary-color);
+    opacity: 0.95;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.3s;
+    z-index: 10000;
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar ul {
+    padding: 20px 0;
+    list-style: none;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 15px 60px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-size: 1.9rem;
+}
+
+.about-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 0;
+    margin-top: 100px;
+    border-top: 5px solid var(--primary-color); ;
+    border-bottom: 5px solid var(--primary-color);
+    position: relative;
+    background-image: url("../images/586669368_17866965174500185_5092136498754147813_n.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 300px;
+}
+
+.about-section header h1{
+    font-size: 3rem;
+    color: var(--secondary-color);
+}
+.about-section p{
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    text-align: left;
+}
+/* =========================
+   BARBEIROS (MOBILE FIRST)
+========================= */
+
+#barbers-card {
+    padding: 50px;
+}
+
+#barbers-card h2{
+    text-align: center;
+    font-size: 3rem;
+}
+
+.barbers-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 10px;
+}
+
+/* =========================
+   CARD BASE
+========================= */
+
+.barberCard {
+    position: relative;
+    background: #111;
+    border-radius: 12px;
+    overflow: hidden;
+    color: white;
+
+    padding: 10px; /* 👈 IMPORTANTE (remove o erro visual) */
+
+    height: 480px;
+}
+
+/* IMAGEM OCUPA O CARD */
+.barberCard img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+    padding: 20px;
+
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+
+    text-align: center;
+    color: white;
+}
+
+/* SHOW ON HOVER */
+.barberCard:hover .card-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* TEXT */
+.card-overlay h3 {
+    font-size: 2rem;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.card-overlay p {
+    font-size: 1.4rem;
+    opacity: 0.85;
+}
+
+/* =========================
+   WHATSAPP (FUNDO DO CARD)
+========================= */
+
+.card-overlay .whatsapp-btn {
+    margin-top: auto; /* 👈 empurra para baixo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.whatsapp-btn img {
+    width: 46px;
+    height: 46px;
+    margin-bottom: 10px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-btn img:hover {
+    transform: scale(1.1);
+}
+
+#services-section{
+    padding: 40px;
+}
+
+#services-section h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.tabela-precos {
+    font-size: 2rem;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.tabela-precos th {
+    background-color: #222;
+    color: white;
+    padding: 12px 20px;
+    text-align: left;
+}
+
+.tabela-precos td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabela-precos tr:hover {
+    background-color: #f5f5f5;
+}
+
+.tabela-precos td:first-child {
+    text-align: left;
+    padding-left: 15px;
+}
+
+.tabela-precos td:last-child {
+    text-align: left;
+    font-weight: bold;
+    padding-left: 40px;
+}
+
+/* =========================
+   CONTACT 
+========================= */
+
+.contact-section {
+    padding: 60px 20px;
+    background: #f8f8f8;
+}
+
+.contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px 25px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    animation: fadeUp 0.6s ease;
+}
+
+.contact-container h2 {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* GRUPO */
+.form-group {
+    position: relative;
+}
+
+/* INPUTS */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 12px 5px;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    outline: none;
+    background: transparent;
+    font-family: "Inter", sans-serif;
+    transition: all 0.3s ease;
+}
+
+/* UNDERLINE ANIMADA */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* TEXTAREA */
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.contact-form button {
+    margin-top: 10px;
+    padding: 14px;
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, var(--primary-color), #000);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* HOVER */
+.contact-form button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* ACTIVE */
+.contact-form button:active {
+    transform: scale(0.97);
+}
+
+/* =========================
+   FEEDBACK
+========================= */
+
+.form-group.success input,
+.form-group.success textarea {
+    border-bottom: 2px solid #28a745;
+}
+
+.form-group.error input,
+.form-group.error textarea {
+    border-bottom: 2px solid #dc3545;
+}
+
+/* =========================
+   ANIMAÇÃO
+========================= */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   CONTACT ACTIONS
+========================= */
+
+.contact-actions {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* BOTÕES BASE */
+.contact-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 14px;
+    font-size: 1.6rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* CALL */
+.contact-actions {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    width: 100%;
+    padding: 14px;
+    font-size: 1.6rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-btn .icon {
+    width: 20px;
+    height: 20px;
+}
+
+.contact-btn.call {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* WHATSAPP */
+.contact-btn.whatsapp {
+    background: #25D366;
+    color: white;
+    
+}
+
+/* HOVER */
+.contact-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* ACTIVE */
+.contact-btn:active {
+    transform: scale(0.97);
+}
+
+.contact-btn.call,
+.contact-btn.whatsapp {
+    display: none;
+}
+
+/* FLOATING BUTTONS */
+.floating-buttons {
+    position: fixed;
+    bottom: 300px;
+    right: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    z-index: 9999;
+}
+
+.float-btn {
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    transition: transform 0.3s ease;
+}
+
+.float-btn svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.float-btn:hover {
+    transform: scale(1.1);
+}
+
+.float-btn.whatsapp {
+    background: #25D366;
+}
+
+.float-btn.call {
+    background: var(--primary-color);
+}
+
+.floating-buttons.hide {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+}
+
+.map-section {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.map-section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.map-section h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.map-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    max-width: 1000px;
+    height: 400px;
+    display: block;
+    border: 0;
+    border-radius: 12px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    
+}
+/* =========================
+   GALERIA SECTION
+========================= */
+
+.gallery-section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.gallery-section h2 {
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+/* =========================
+   CARD PREMIUM
+========================= */
+
+.gallery-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+
+    background: #111;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+
+    /* ALTURA CONTROLADA (IMPORTANTE) */
+    aspect-ratio: 4 / 5;
+}
+
+/* =========================
+   IMAGEM
+========================= */
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+/* =========================
+   HOVER PREMIUM
+========================= */
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+    filter: brightness(0.75) contrast(1.1);
+}
+
+/* =========================
+   OVERLAY PREMIUM
+========================= */
+
+.gallery-item::after {
+    content: "VER";
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    font-size: 1rem;
+    letter-spacing: 3px;
+
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.75),
+        rgba(0,0,0,0.2)
+    );
+
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.gallery-item:hover::after {
+    opacity: 1;
+}
+
+/* =========================
+   MODAL (MANTIDO + MELHORADO)
+========================= */
+
+.gallery-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+
+    background: rgba(0,0,0,0.95);
+
+    justify-content: center;
+    align-items: center;
+
+    backdrop-filter: blur(4px);
+}
+
+.gallery-modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 16px;
+
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* CLOSE BUTTON */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+
+    transition: transform 0.3s ease;
+}
+
+.close:hover {
+    transform: scale(1.2);
+}
+
+/* =========================
+   FOOTER BASE
+========================= */
+
+.footerWrapper {
+    background-color: var(--primary-color);
+    color: white;
+    padding-top: 40px;
+}
+
+/* =========================
+   MAIN FOOTER
+========================= */
+
+.mainFooter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 10px;
+   
+}
+
+/* COLUNAS */
+.mainFooterColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* LOGO */
+.mainFooterColumn img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+/* SOCIAL */
+.mainFooterColumn ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mainFooterColumn ul li {
+    display: inline-block;
+}
+
+/* ICON */
+.mainFooterColumn a svg {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1); 
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+.mainFooterColumn a svg {
+    transition: transform 0.3s ease, opacity 0.3s;
+}
+
+.mainFooterColumn a svg:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
+}
+/* =========================
+   MINI FOOTER
+========================= */
+
+.miniFooter {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width: 768px) {
+
+    .columnLeft img {
+        margin-left: 40px;
+    }
+
+    .menu-btn {
+        display: none;
+    }
+
+    .sidebar {
+        position: static;
+        width: auto;
+        height: auto;
+        background: none;
+        opacity: 1;
+        flex-direction: row;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+        padding: 20px;
+        margin-right: 60px;
+    }
+
+    .sidebar ul li {
+        padding: 0;
+    }
+
+    .sidebar ul li a {
+        padding: 8px 12px;
+        display: block;
+        position: relative;
+    }
+
+    .sidebar ul li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: width 0.3s;
+    }
+
+    .sidebar ul li a:hover::after {
+        width: 100%;
+    }
+
+    /* BARBEIROS DESKTOP */
+    .barbers-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        padding: 20px;
+        justify-items: center;
+    }
+
+    .barberCard {
+        width: 100%;
+        max-width: 420px;
+        height: 520px;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .barberCard:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
+    .contact-actions {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .contact-btn {
+        width: auto;
+        min-width: 560px;
+    }
+
+/* esconder apenas CALL */
+.contact-btn.call {
+    display: none;
+}
+
+/* ✔ mostrar apenas WhatsApp */
+.contact-btn.whatsapp {
+    display: flex;
+}
+
+/* esconder floating no desktop */
+.floating-buttons {
+    display: none;
+}
+
+/* garantir que call floating também não aparece */
+.float-btn.call {
+    display: none;
+}
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gallery-item {
+        height: 260px;
+    }
+
+
+    .mainFooter {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .mainFooterColumn.left {
+        align-items: flex-start;
+        margin-left: 40px;
+    }
+
+    .mainFooterColumn.right {
+        align-items: flex-end;
+        margin-right: 40px;
+    }
+    
+    .miniFooter {
+       text-align: left;
+       padding: 20px;
+       border-top: 1px solid rgba(255,255,255,0.1);
+       font-size: 1.2rem;
+       opacity: 0.7;
+   }
+}
+
+@media (min-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+    }
+
+    .gallery-item {
+        aspect-ratio: auto;
+        height: 280px;
+        border-radius: 16px;
+    }
+}
