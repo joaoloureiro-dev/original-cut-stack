@@ -154,6 +154,7 @@ if (galleryItems.length) {
         galleryObserver.observe(item);
     });
 }
+
 const form = document.querySelector(".contact-form");
 const button = form.querySelector("button");
 
