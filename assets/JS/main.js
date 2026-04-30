@@ -172,13 +172,11 @@ window.onTurnstileExpired = function () {
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // valida captcha
     if (!turnstileToken) {
         alert("Por favor confirma que não és um robô.");
         return;
     }
 
-    // dados do form
     const formData = new FormData(form);
 
     const data = {
@@ -188,8 +186,10 @@ form.addEventListener("submit", async (e) => {
         token: turnstileToken
     };
 
+    console.log("TOKEN:", turnstileToken);
+    console.log("DATA:", data);
+
     try {
-        // loading UI
         button.disabled = true;
         button.textContent = "A enviar...";
 
@@ -203,11 +203,12 @@ form.addEventListener("submit", async (e) => {
 
         const result = await response.json();
 
+        console.log("RESPONSE:", result);
+
         if (!response.ok) {
             throw new Error(result.error || "Erro ao enviar mensagem");
         }
 
-        // sucesso
         alert("Mensagem enviada com sucesso!");
         form.reset();
         turnstileToken = null;

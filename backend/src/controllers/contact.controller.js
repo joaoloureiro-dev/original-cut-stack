@@ -1,7 +1,11 @@
 import { verifyTurnstile } from "../utils/verifyTurnstile.js";
 import { sendContactEmail, sendAutoReply } from "../services/email.service.js";
 
+
 export async function handleContact(req, reply) {
+
+    console.log(req.body);
+
     const { name, email, message, token } = req.body;
 
     if (!name || !email || !message || !token) {
