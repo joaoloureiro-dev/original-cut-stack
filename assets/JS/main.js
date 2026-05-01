@@ -194,7 +194,7 @@ form.addEventListener("submit", async (e) => {
         button.disabled = true;
         button.textContent = "A enviar...";
 
-        const response = await fetch("http://localhost:3000/contact", {
+        const response = await fetch("https://original-cut-stack-production.up.railway.app/contact", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

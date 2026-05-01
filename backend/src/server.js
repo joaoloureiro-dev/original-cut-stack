@@ -10,10 +10,7 @@ const app = Fastify({
 
 // ✅ AQUI — registar plugins
 await app.register(cors, {
-    origin: [
-        "http://localhost:5500",
-        "https://teu-frontend.vercel.app"
-    ]
+    origin: process.env.FRONTEND_URL
 });
 
 // ✅ depois as routes
